@@ -13,6 +13,12 @@ This repository contains low-level hardware routines written in C and ARMv8 Asse
   * Handles struct header offsets (+12 bytes) to access `mat[0][0]` directly.
   * Implements runtime dimension verification (`row`, `maxcolumn`, `column`) between matrices $A$, $B$, and $Sum$ to prevent memory corruption.
 
+### 2. Condition Flags & Overflow Detection (`flags.c` & `flags_asm.asm`)
+* **Description:** Evaluates 64-bit signed arithmetic states (positive/negative sign and signed integer overflow) directly via the ARM Cortex-A53 `PSTATE` (`NZCV`) register.
+* **Key Implementation Details:**
+  * Uses `ADDS` to trigger flag updates and `MRS` to snapshot `NZCV` into general-purpose registers (`X14`, `X15`) before subsequent instructions overwrite them.
+  * Extracts bit 31 (`N` flag) and bit 28 (`V` flag) using `LSR` and `AND` bitmasking to return distinct status codes (`42`, `43`, `52`, `53`) to the C caller.
+
 ---
 
 ## 🛠️ Technical Stack & Tools
