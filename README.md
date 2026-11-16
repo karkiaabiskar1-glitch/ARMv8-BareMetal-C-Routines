@@ -1,6 +1,6 @@
 # ARMv8 Assembly & C Hardware Routines (Raspberry Pi)
 
-This repository contains low-level hardware routines written in C and ARMv8 Assembly, developed and tested on a Raspberry Pi 3 Model B as part of the Computer Technology Laboratory at RWU Ravensburg-Weingarten.
+This repository contains low-level hardware routines written in C and ARMv8 Assembly, developed and tested on a Raspberry Pi 3 Model B as part of the Digital Technology Laboratory at RWU Ravensburg-Weingarten.
 
 ---
 
