@@ -19,6 +19,12 @@ This repository contains low-level hardware routines written in C and ARMv8 Asse
   * Uses `ADDS` to trigger flag updates and `MRS` to snapshot `NZCV` into general-purpose registers (`X14`, `X15`) before subsequent instructions overwrite them.
   * Extracts bit 31 (`N` flag) and bit 28 (`V` flag) using `LSR` and `AND` bitmasking to return distinct status codes (`42`, `43`, `52`, `53`) to the C caller.
 
+### 3. Bit Manipulation: Set & Shift (`sshift.c` & `setshift_asm.asm`)
+* **Description:** Implements a runtime single-bit set operation (`*res = a | (1 << mask)`) in ARMv8 assembly and compares 64-bit register behavior against standard 32-bit C integer shifts.
+* **Key Implementation Details:**
+  * Enforces input bounds checking (`0 <= mask <= 31`) using `CMP` with conditional branches (`BLT`, `BGT`), returning `-1` on out-of-range inputs.
+  * Dynamically builds single-bit masks via Logical Shift Left (`LSL`) and applies them non-destructively to registers via `ORR`.
+
 ---
 
 ## 🛠️ Technical Stack & Tools
